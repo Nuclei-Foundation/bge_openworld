@@ -76,19 +76,6 @@ def load_chunks(cont):
 	######## INITIALIZE ########
 	############################
 	
-	### Load the current chunk at start ###
-	if always.positive:
-		
-		# Chunks
-		chunk_current = [own["current_chunk_x"], own["current_chunk_y"]]
-		
-		if not (maps + gen_chunk_name(chunk_current)) in LibList():
-		
-			# Load the current chunk at start
-			LibLoad(maps + gen_chunk_name(chunk_current) + ext, "Scene", async = False)
-			
-		print("Player started at " + gen_chunk_name(chunk_current) + ext)
-	
 	### Load the adjacent chunks when inside a chunk ###
 	if in_chunk.positive:
 		
@@ -108,39 +95,46 @@ def load_chunks(cont):
 		own["current_chunk_y"] = chunk_current[1]
 		
 		### Load chunks ###
-		# Northwest
-		if in_chunk.hitObject["northwest"] and not (maps + gen_chunk_name(chunk_nw) + ext) in LibList():
-			LibLoad(maps + gen_chunk_name(chunk_nw) + ext, "Scene", async = True)
+		if True:
 			
-		# North
-		if in_chunk.hitObject["north"] and not (maps + gen_chunk_name(chunk_n) + ext) in LibList():
-			LibLoad(maps + gen_chunk_name(chunk_n) + ext, "Scene", async = True)
+			# Current
+			if not (maps + gen_chunk_name(chunk_current) + ext) in LibList():
+				LibLoad(maps + gen_chunk_name(chunk_current) + ext, "Scene", async = True)
 			
-		# Northeast
-		if in_chunk.hitObject["northeast"] and not (maps + gen_chunk_name(chunk_ne) + ext) in LibList():
-			LibLoad(maps + gen_chunk_name(chunk_ne) + ext, "Scene", async = True)
-			
-		# West
-		if in_chunk.hitObject["west"] and not (maps + gen_chunk_name(chunk_w) + ext) in LibList():
-			LibLoad(maps + gen_chunk_name(chunk_w) + ext, "Scene", async = True)
-			
-		# East
-		if in_chunk.hitObject["east"] and not (maps + gen_chunk_name(chunk_e) + ext) in LibList():
-			LibLoad(maps + gen_chunk_name(chunk_e) + ext, "Scene", async = True)
-			
-		# Southwest
-		if in_chunk.hitObject["southwest"] and not (maps + gen_chunk_name(chunk_sw) + ext) in LibList():
-			LibLoad(maps + gen_chunk_name(chunk_sw) + ext, "Scene", async = True)
-			
-		# South
-		if in_chunk.hitObject["south"] and not (maps + gen_chunk_name(chunk_s) + ext) in LibList():
-			LibLoad(maps + gen_chunk_name(chunk_s) + ext, "Scene", async = True)
-			
-		# Southeast
-		if in_chunk.hitObject["southeast"] and not (maps + gen_chunk_name(chunk_se) + ext) in LibList():
-			LibLoad(maps + gen_chunk_name(chunk_se) + ext, "Scene", async = True)
-			
-		print("Loaded adjacents of " + str(own["current_chunk_x"]) + "_" + str(own["current_chunk_y"]) + ext)
+			# Northwest
+			if in_chunk.hitObject["northwest"] and not (maps + gen_chunk_name(chunk_nw) + ext) in LibList():
+				LibLoad(maps + gen_chunk_name(chunk_nw) + ext, "Scene", async = True)
+				
+			# North
+			if in_chunk.hitObject["north"] and not (maps + gen_chunk_name(chunk_n) + ext) in LibList():
+				LibLoad(maps + gen_chunk_name(chunk_n) + ext, "Scene", async = True)
+				
+			# Northeast
+			if in_chunk.hitObject["northeast"] and not (maps + gen_chunk_name(chunk_ne) + ext) in LibList():
+				LibLoad(maps + gen_chunk_name(chunk_ne) + ext, "Scene", async = True)
+				
+			# West
+			if in_chunk.hitObject["west"] and not (maps + gen_chunk_name(chunk_w) + ext) in LibList():
+				LibLoad(maps + gen_chunk_name(chunk_w) + ext, "Scene", async = True)
+				
+			# East
+			if in_chunk.hitObject["east"] and not (maps + gen_chunk_name(chunk_e) + ext) in LibList():
+				LibLoad(maps + gen_chunk_name(chunk_e) + ext, "Scene", async = True)
+				
+			# Southwest
+			if in_chunk.hitObject["southwest"] and not (maps + gen_chunk_name(chunk_sw) + ext) in LibList():
+				LibLoad(maps + gen_chunk_name(chunk_sw) + ext, "Scene", async = True)
+				
+			# South
+			if in_chunk.hitObject["south"] and not (maps + gen_chunk_name(chunk_s) + ext) in LibList():
+				LibLoad(maps + gen_chunk_name(chunk_s) + ext, "Scene", async = True)
+				
+			# Southeast
+			if in_chunk.hitObject["southeast"] and not (maps + gen_chunk_name(chunk_se) + ext) in LibList():
+				LibLoad(maps + gen_chunk_name(chunk_se) + ext, "Scene", async = True)
+				
+			# Warning message
+			print("Loaded adjacents of " + str(own["current_chunk_x"]) + "_" + str(own["current_chunk_y"]) + ext)
 		
 		### Free unused chunks ###
 		# Iterate over loaded libs
